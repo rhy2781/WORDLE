@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class wordlelogic{
@@ -11,11 +12,10 @@ public class wordlelogic{
             ArrayList<String> same = sameWords(wordle, "vi...");
             System.out.println(same.toString());
 
+            HashMap<Character, Boolean> tracker = initializeCharacterTracker();
+            System.out.println(tracker.get('z'));
 
 //            System.out.println(isSame("vivid",".i.i."));
-
-
-
 //            String[] same = hasSameLetters(wordle, "vivid");
 //            System.out.println(Arrays.toString(same));
         } catch (FileNotFoundException e) {
@@ -34,7 +34,6 @@ public class wordlelogic{
         }
         return wordbank;
     }
-
     static boolean isSame(String s1, String guess){
         for(int i = 0; i < s1.length(); i++){
             if(guess.charAt(i) == '.'){
@@ -55,5 +54,13 @@ public class wordlelogic{
         }
         return same;
     }
-
+    static HashMap<Character, Boolean> initializeCharacterTracker(){
+        HashMap<Character, Boolean> tracker = new HashMap<>();
+        char a = 'a';
+        for(int i = 0; i < 26; i++){
+            tracker.put(a, null);
+            a = (char)((int) a + 1);
+        }
+        return tracker;
+    }
 }
