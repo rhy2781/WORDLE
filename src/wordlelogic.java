@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,7 +8,13 @@ public class wordlelogic{
     public static void main(String[] args) {
         try {
             String[] wordle = wordleList();
-            System.out.println(isSame("vivid",".i.i."));
+            ArrayList<String> same = sameWords(wordle, "vi...");
+            System.out.println(same.toString());
+
+
+//            System.out.println(isSame("vivid",".i.i."));
+
+
 
 //            String[] same = hasSameLetters(wordle, "vivid");
 //            System.out.println(Arrays.toString(same));
@@ -38,6 +45,15 @@ public class wordlelogic{
             }
         }
         return true;
+    }
+    static ArrayList<String> sameWords(String[] wordbank, String guess){
+        ArrayList<String> same = new ArrayList<>();
+        for(int i = 0; i < wordbank.length; i++){
+            if (isSame(wordbank[i], guess)){
+                same.add(wordbank[i]);
+            }
+        }
+        return same;
     }
 
 }
