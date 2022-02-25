@@ -6,18 +6,28 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class wordlelogic{
+    HashMap<Character, Boolean> tracker;
+    String[] wordle;
+
+    public wordlelogic() throws FileNotFoundException {
+        this.tracker = initializeCharacterTracker();
+        this.wordle = wordleList();
+
+    }
+
     public static void main(String[] args) {
         try {
-            String[] wordle = wordleList();
-            ArrayList<String> same = sameWords(wordle, "vi...");
-            System.out.println(same.toString());
-
             HashMap<Character, Boolean> tracker = initializeCharacterTracker();
-            System.out.println(tracker.get('z'));
+            tracker.put('x', false);
+            tracker.put('s', false);
 
-//            System.out.println(isSame("vivid",".i.i."));
-//            String[] same = hasSameLetters(wordle, "vivid");
-//            System.out.println(Arrays.toString(same));
+            System.out.println(tracker.get('x'));
+
+            String[] wordle = wordleList();
+            ArrayList<String> same = sameWords(wordle, "vi...", tracker);
+            System.out.println(same.toString());
+//
+//            System.out.println(tracker.get('z'));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -45,11 +55,20 @@ public class wordlelogic{
         }
         return true;
     }
-    static ArrayList<String> sameWords(String[] wordbank, String guess){
+    static ArrayList<String> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker){
         ArrayList<String> same = new ArrayList<>();
         for(int i = 0; i < wordbank.length; i++){
             if (isSame(wordbank[i], guess)){
                 same.add(wordbank[i]);
+            }
+        }
+
+        for(int i = 0; i < same.size(); i++){
+            for (int j = 0; j < same.get(i).length(); j++) {
+                if (!tracker.get(same.get(i).charAt(j))) {
+                    same.remove(i);
+                    i--;
+                }
             }
         }
         return same;
@@ -58,7 +77,7 @@ public class wordlelogic{
         HashMap<Character, Boolean> tracker = new HashMap<>();
         char a = 'a';
         for(int i = 0; i < 26; i++){
-            tracker.put(a, null);
+            tracker.put(a, true);
             a = (char)((int) a + 1);
         }
         return tracker;
