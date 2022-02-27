@@ -22,18 +22,16 @@ public class wordlelogic{
             tracker.put('f', false);
             tracker.put('r', false);
             tracker.put('e', false);
+            tracker.put('y', false);
+
 
             String[] wordle = wordleList();
-
-//            for(Character c : tracker.keySet()){
-//                System.out.println(tracker.get(c) + " " +c.toString());
-//            }
-            System.out.println(isSame("qqqeq", "qqqeq", tracker));
+//            System.out.println(isSame("spine", "spi..", tracker));
 
 
-//            ArrayList<String> same = sameWords(wordle, "s.i..", tracker);
-//            System.out.println(same.toString());
-//
+            ArrayList<String> same = sameWords(wordle, "spi..", tracker);
+            System.out.println(same.toString());
+
 //            System.out.println(tracker.get('z'));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -53,12 +51,11 @@ public class wordlelogic{
     }
     static boolean isSame(String s1, String guess, HashMap<Character, Boolean> tracker){
         for(int i = 0; i < s1.length(); i++){
-            if(tracker.get(guess.charAt(i)) == false){
-                System.out.println("key is false");
+            if(!tracker.get(s1.charAt(i))){
                 return false;
             }
             else if(guess.charAt(i) == '.'){
-                i++;
+                continue;
             }
             else if(guess.charAt(i) != s1.charAt(i)){
                 return false;
