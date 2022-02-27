@@ -1,31 +1,38 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class wordlelogic{
-    HashMap<Character, Boolean> tracker;
-    String[] wordle;
-
-    public wordlelogic() throws FileNotFoundException {
-        this.tracker = initializeCharacterTracker();
-        this.wordle = wordleList();
-
-    }
+//    HashMap<Character, Boolean> tracker;
+//    String[] wordle;
+//
+//    public wordlelogic() throws FileNotFoundException {
+//        this.tracker = initializeCharacterTracker();
+//        this.wordle = wordleList();
+//
+//    }
 
     public static void main(String[] args) {
         try {
             HashMap<Character, Boolean> tracker = initializeCharacterTracker();
-            tracker.put('x', false);
-            tracker.put('s', false);
-
-            System.out.println(tracker.get('x'));
+            tracker.put('f', false);
+            tracker.put('r', false);
+            tracker.put('e', false);
 
             String[] wordle = wordleList();
-            ArrayList<String> same = sameWords(wordle, "vi...", tracker);
-            System.out.println(same.toString());
+
+//            for(Character c : tracker.keySet()){
+//                System.out.println(tracker.get(c) + " " +c.toString());
+//            }
+            System.out.println(isSame("qqqeq", "qqqeq", tracker));
+
+
+//            ArrayList<String> same = sameWords(wordle, "s.i..", tracker);
+//            System.out.println(same.toString());
 //
 //            System.out.println(tracker.get('z'));
         } catch (FileNotFoundException e) {
@@ -44,9 +51,13 @@ public class wordlelogic{
         }
         return wordbank;
     }
-    static boolean isSame(String s1, String guess){
+    static boolean isSame(String s1, String guess, HashMap<Character, Boolean> tracker){
         for(int i = 0; i < s1.length(); i++){
-            if(guess.charAt(i) == '.'){
+            if(tracker.get(guess.charAt(i)) == false){
+                System.out.println("key is false");
+                return false;
+            }
+            else if(guess.charAt(i) == '.'){
                 i++;
             }
             else if(guess.charAt(i) != s1.charAt(i)){
@@ -55,20 +66,11 @@ public class wordlelogic{
         }
         return true;
     }
-    static ArrayList<String> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker){
-        ArrayList<String> same = new ArrayList<>();
-        for(int i = 0; i < wordbank.length; i++){
-            if (isSame(wordbank[i], guess)){
+    static ArrayList<String> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker) {
+        ArrayList<String> same  = new ArrayList<>();
+        for (int i = 0; i < wordbank.length; i++) {
+            if (isSame(wordbank[i], guess, tracker)) {
                 same.add(wordbank[i]);
-            }
-        }
-
-        for(int i = 0; i < same.size(); i++){
-            for (int j = 0; j < same.get(i).length(); j++) {
-                if (!tracker.get(same.get(i).charAt(j))) {
-                    same.remove(i);
-                    i--;
-                }
             }
         }
         return same;
@@ -80,6 +82,7 @@ public class wordlelogic{
             tracker.put(a, true);
             a = (char)((int) a + 1);
         }
+        tracker.put('.', true);
         return tracker;
     }
 }
