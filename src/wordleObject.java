@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class wordleObject {
     HashMap<Character, Boolean> tracker;
     String[] wordbank;
+
     public static void main(String [] args){
         try {
             wordleObject a = new wordleObject();
@@ -22,6 +23,9 @@ public class wordleObject {
         this.tracker = initializeCharacterTracker();
         this.wordbank = wordleList();
     }
+    /**
+     *  This method initializes our tracker, which we use to determine if a letter is in a word or not
+     */
     public HashMap<Character, Boolean> initializeCharacterTracker(){
         this.tracker = new HashMap<>();
         char a = 'a';
@@ -32,6 +36,9 @@ public class wordleObject {
         tracker.put('.', true);
         return tracker;
     }
+    /**
+     *  This method iterates through the text file database and initializes an array to contain all the entries
+     */
     public String[] wordleList() throws FileNotFoundException {
         String[] wordbank = new String[2315];
         File wordle = new File("src/wordle.txt");
@@ -43,6 +50,9 @@ public class wordleObject {
         }
         return wordbank;
     }
+    /**
+     *  This method determines if a guess could be a possible word, given the guess, tracker, and potential word.
+     */
     public boolean isSame(String s1, String guess, HashMap<Character, Boolean> tracker){
         for(int i = 0; i < s1.length(); i++){
             if(!tracker.get(s1.charAt(i))){
@@ -57,6 +67,10 @@ public class wordleObject {
         }
         return true;
     }
+    /**
+     *  This method iterates through the wordle list and generates a list of potential answers based on the letters
+     *  that have the correct placement and correct letters.
+     */
     public ArrayList<String> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker) {
         ArrayList<String> same  = new ArrayList<>();
         for (int i = 0; i < wordbank.length; i++) {
@@ -66,6 +80,9 @@ public class wordleObject {
         }
         return same;
     }
+    /**
+     *  If a letter is not included we can exclude it from the list of possbilities.
+     */
     public void letterNotIncluded(Character c){
         this.tracker.put(c, false);
     }
