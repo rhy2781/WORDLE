@@ -14,6 +14,8 @@ public class wordleObject {
             for(String s: a.wordbank){
                 System.out.println(s);
             }
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -21,8 +23,12 @@ public class wordleObject {
     }
 
     public wordleObject() throws FileNotFoundException{
+        // initialize our character tracker
         this.tracker = initializeCharacterTracker();
-        this.wordbank = wordleList();
+
+        // initialize our database array
+        database d = new database();
+        this.wordbank = d.wordleList();
     }
 
     /**
@@ -37,21 +43,6 @@ public class wordleObject {
         }
         tracker.put('.', true);
         return tracker;
-    }
-
-    /**
-     *  This method iterates through the text file database and initializes an array to contain all the entries
-     */
-    public String[] wordleList() throws FileNotFoundException {
-        String[] wordbank = new String[2315];
-        File wordle = new File("src/wordle.txt");
-        Scanner a = new Scanner(wordle);
-        int i = 0;
-        while (a.hasNextLine()) {
-            wordbank[i] = a.nextLine();
-            i++;
-        }
-        return wordbank;
     }
 
     /**
@@ -76,14 +67,23 @@ public class wordleObject {
      *  This method iterates through the wordle list and generates a list of potential answers based on the letters
      *  that have the correct placement and correct letters.
      */
-    public ArrayList<String> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker) {
-        ArrayList<String> same  = new ArrayList<>();
+    public ArrayList<potentialAnswer> sameWords(String[] wordbank, String guess, HashMap<Character, Boolean> tracker) {
+        ArrayList<potentialAnswer> same  = new ArrayList<>();
         for (int i = 0; i < wordbank.length; i++) {
             if (isSame(wordbank[i], guess, tracker)) {
-                same.add(wordbank[i]);
+                same.add(calculatePotential(wordbank[i], tracker));
             }
         }
         return same;
+    }
+    public potentialAnswer calculatePotential(String s, HashMap<Character, Boolean> tracker){
+        potentialAnswer result = new potentialAnswer(s);
+        for(int i = 0; i < s.length(); i++){
+            if(tracker.get(s.charAt(i))){
+                result.increasePotential();
+            }
+        }
+        return result;
     }
 
     /**
