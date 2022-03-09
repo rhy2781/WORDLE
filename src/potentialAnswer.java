@@ -21,7 +21,6 @@ public class potentialAnswer extends potentialAnswerComparator{
     /**
      *  This method overrides the standard toString method.
      */
-    /
     @Override
     public String toString(){
         return this.word + ": " + this.potential;

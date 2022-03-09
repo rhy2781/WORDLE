@@ -5,15 +5,26 @@ import java.util.Arrays;
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
         wordleObject a = new wordleObject();
-        a.letterIncluded('w');
-        a.letterIncluded('e');
+        a.letterIncluded('t');
+        a.letterIncluded('h');
+
+//        a.letterIncluded('e');
 
         a.letterNotIncluded('r');
+        a.letterNotIncluded('e');
+        a.letterNotIncluded('a');
+        a.letterNotIncluded('d');
+        a.letterNotIncluded('s');
+        a.letterNotIncluded('i');
+        a.letterNotIncluded('l');
+        a.letterNotIncluded('b');
+        a.letterNotIncluded('u');
         a.letterNotIncluded('c');
-        a.letterNotIncluded('k');
 
 
-        ArrayList<potentialAnswer> result = a.sameWords("..e..");
+
+
+        ArrayList<potentialAnswer> result = a.sameWords("....h");
         System.out.println(Arrays.toString(result.toArray()));
 
         /**
