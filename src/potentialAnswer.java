@@ -1,4 +1,4 @@
-public class potentialAnswer {
+public class potentialAnswer extends potentialAnswerComparator{
     String word;
     int potential;
     public potentialAnswer(String s){
@@ -7,6 +7,9 @@ public class potentialAnswer {
     }
     public void increasePotential(){
         this.potential ++;
+    }
+    public int getPotential(){
+        return this.potential;
     }
     @Override
     public String toString(){
