@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class database {
     /**
      *  This method iterates through the text file database and initializes an array to contain all the entries
+     *
+     *  @return wordbank, array of all the words in the database.
      */
     public String[] wordleList() throws FileNotFoundException {
         String[] wordbank = new String[2315];
