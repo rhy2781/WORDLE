@@ -8,20 +8,6 @@ public class wordleObject {
     HashMap<Character, Boolean> tracker;
     String[] wordbank;
 
-    public static void main(String [] args){
-        try {
-            wordleObject a = new wordleObject();
-            for(String s: a.wordbank){
-                System.out.println(s);
-            }
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public wordleObject() throws FileNotFoundException{
         // initialize our character tracker
         this.tracker = initializeCharacterTracker();
@@ -50,8 +36,10 @@ public class wordleObject {
      */
     public boolean isSame(String s1, String guess, HashMap<Character, Boolean> tracker){
         for(int i = 0; i < s1.length(); i++){
-            if(!tracker.get(s1.charAt(i))){ // if we find a letter that is not included in the tracker
-                return false;
+            if(!tracker.get(s1.charAt(i))) {
+                if (!tracker.get(s1.charAt(i))) { // if we find a letter that is not included in the tracker
+                    return false;
+                }
             }
             else if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue=
                 continue;
