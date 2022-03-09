@@ -4,21 +4,21 @@ import java.util.Arrays;
 
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
-//        wordleObject a = new wordleObject();
-//        a.letterIncluded('r');
-//        a.letterIncluded('o');
-//
-//        a.letterNotIncluded('t');
-//        a.letterNotIncluded('i');
-//        a.letterNotIncluded('c');
-//        a.letterNotIncluded('k');
-//        a.letterNotIncluded('p');
-//        a.letterNotIncluded('s');
-//        a.letterNotIncluded('e');
-//
-//        ArrayList<potentialAnswer> result = a.sameWords(a.wordbank, ".o...", a.tracker);
-//        System.out.println(Arrays.toString(result.toArray()));
+        wordleObject a = new wordleObject();
+        a.letterIncluded('w');
+        a.letterIncluded('e');
 
+        a.letterNotIncluded('r');
+        a.letterNotIncluded('c');
+        a.letterNotIncluded('k');
+
+
+        ArrayList<potentialAnswer> result = a.sameWords("..e..");
+        System.out.println(Arrays.toString(result.toArray()));
+
+        /**
+         *
+         * Comparator tests
         potentialAnswer a = new potentialAnswer("think");
         a.increasePotential();
         a.increasePotential();
@@ -37,6 +37,7 @@ public class main {
         list.sort(compare);
 
         System.out.println(Arrays.toString(list.toArray()));
+         */
 
 
 
