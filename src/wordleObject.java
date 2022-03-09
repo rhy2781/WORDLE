@@ -2,19 +2,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class wordleObject {
     HashMap<Character, Boolean> tracker;
     String[] wordbank;
+    HashSet<Character> confirmed;
 
     public wordleObject() throws FileNotFoundException{
         // initialize our character tracker
         this.tracker = initializeCharacterTracker();
-
         // initialize our database array
         database d = new database();
         this.wordbank = d.wordleList();
+
+        this.confirmed = new HashSet<>();
     }
 
     /**
@@ -67,7 +70,7 @@ public class wordleObject {
     public potentialAnswer calculatePotential(String s, HashMap<Character, Boolean> tracker){
         potentialAnswer result = new potentialAnswer(s);
         for(int i = 0; i < s.length(); i++){
-            if(tracker.get(s.charAt(i))){
+            if(confirmed.contains(s.charAt(i))){
                 result.increasePotential();
             }
         }
@@ -86,5 +89,6 @@ public class wordleObject {
      */
     public void letterIncluded(Character c){
         this.tracker.put(c, true);
+        this.confirmed.add(c);
     }
 }
