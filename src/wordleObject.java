@@ -47,11 +47,11 @@ public class wordleObject {
      */
     public boolean isSame(String s1, String guess){
         for(int i = 0; i < s1.length(); i++){
-            if (!tracker.get(s1.charAt(i))) { // if we find a letter that is not included in the tracker
-                return false;
-            }
-            else if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue
+            if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue
                 continue;
+            }
+            else if (!tracker.get(s1.charAt(i))) { // if we find a letter that is not included in the tracker
+                return false;
             }
             else if(guess.charAt(i) != s1.charAt(i)){ // if a letter found does not match the given string, return
                 return false;
