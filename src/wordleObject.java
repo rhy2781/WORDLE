@@ -50,7 +50,7 @@ public class wordleObject {
             if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue
                 continue;
             }
-            else if (!tracker.get(s1.charAt(i))) { // if we find a letter that is not included in the tracker
+            else if (!confirmed.contains(s1.charAt(i))) { // if we find a letter that is not included in the tracker
                 return false;
             }
             else if(guess.charAt(i) != s1.charAt(i)){ // if a letter found does not match the given string, return

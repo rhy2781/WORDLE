@@ -22,37 +22,8 @@ public class main {
         a.letterNotIncluded('i');
         a.letterNotIncluded('h');
 
-
-
-
-        ArrayList<potentialAnswer> result = a.sameWords(".a...");
+        ArrayList<potentialAnswer> result = a.sameWords(".atch");
         System.out.println(Arrays.toString(result.toArray()));
-
-        /**
-         *
-         * Comparator tests
-        potentialAnswer a = new potentialAnswer("think");
-        a.increasePotential();
-        a.increasePotential();
-        a.increasePotential();
-
-        potentialAnswer b = new potentialAnswer("sting");
-        b.increasePotential();
-        b.increasePotential();
-
-        potentialAnswerComparator compare = new potentialAnswerComparator();
-
-        ArrayList<potentialAnswer> list = new ArrayList<>();
-        list.add(a);
-        list.add(b);
-
-        list.sort(compare);
-
-        System.out.println(Arrays.toString(list.toArray()));
-         */
-
-
-
 
     }
 }
