@@ -4,23 +4,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class wordleObject {
-    HashMap<Character, Boolean> tracker;
-    String[] wordbank;
-    HashSet<Character> confirmed;
-    potentialAnswerComparator comparator;
+    HashMap<Character, Boolean> tracker; // tracker will keep track of the letters that are not in the word
+    HashSet<Character> confirmed; // letters confirmed to be part of the word,
+    potentialAnswerComparator comparator; // highest potential listed first
+    String[] wordbank; // text database is used
+
 
     public wordleObject() throws FileNotFoundException{
-        // initialize our character tracker
-        this.tracker = initializeCharacterTracker();
-        // initialize our database array
-        database d = new database();
-        this.wordbank = d.wordleList();
-
-        // initialized a set to contain the confirmed letter to be a part of the word
-        this.confirmed = new HashSet<>();
-
-        //comparator used to sort results
-        this.comparator = new potentialAnswerComparator();
+        this.tracker = initializeCharacterTracker();    // initialize our character tracker, all letters are initially set to true
+        database d = new database();    // initialize our database array
+        this.wordbank = d.wordleList(); // initialized a set to contain the confirmed letter to be a part of the word
+        this.confirmed = new HashSet<>(); // letters confirmed to be in the hashset
+        this.comparator = new potentialAnswerComparator();  //comparator used to sort results
     }
 
     /**
@@ -47,11 +42,11 @@ public class wordleObject {
      */
     public boolean isSame(String s1, String guess){
         for(int i = 0; i < s1.length(); i++){
-            if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue
-                continue;
-            }
-            else if (!confirmed.contains(s1.charAt(i))) { // if we find a letter that is not included in the tracker
+            if (!tracker.get(s1.charAt(i))) { // if we find a letter that is not included in the tracker set
                 return false;
+            }
+            else if(guess.charAt(i) == '.'){ // if our letter is a '.' then we continue
+                continue;
             }
             else if(guess.charAt(i) != s1.charAt(i)){ // if a letter found does not match the given string, return
                 return false;
@@ -71,7 +66,10 @@ public class wordleObject {
         ArrayList<potentialAnswer> same  = new ArrayList<>();
         for (String s : wordbank) {
             if (isSame(s, guess)) {
-                same.add(calculatePotential(s));
+                potentialAnswer response = calculatePotential(s);
+                if(response != null){
+                    same.add(calculatePotential(s));
+                }
             }
         }
         same.sort(comparator);
@@ -84,11 +82,16 @@ public class wordleObject {
      * @return result, potentialAnswer object containing the updated count
      */
     public potentialAnswer calculatePotential(String s){
+        HashSet<Character> temp = (HashSet<Character>) confirmed.clone();
         potentialAnswer result = new potentialAnswer(s);
         for(int i = 0; i < s.length(); i++){
             if(confirmed.contains(s.charAt(i))){
                 result.increasePotential();
+                temp.remove(s.charAt(i));
             }
+        }
+        if(temp.size() != 0){ // if the word does not completely clean the list of characters we have found, remove
+            return null;
         }
         return result;
     }
@@ -106,6 +109,6 @@ public class wordleObject {
      *  @param c letter to be marked
      */
     public void letterIncluded(Character c){
-        this.confirmed.add(c);  // add the letter to our confirmed set
+        confirmed.add(c);
     }
 }

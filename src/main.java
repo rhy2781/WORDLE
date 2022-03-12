@@ -12,7 +12,7 @@ public class main {
 
         a.letterNotIncluded('m');
         a.letterNotIncluded('p');
-        a.letterNotIncluded('l');
+//        a.letterNotIncluded('l');
         a.letterNotIncluded('e');
         a.letterNotIncluded('n');
         a.letterNotIncluded('d');
@@ -20,10 +20,10 @@ public class main {
         a.letterNotIncluded('b');
         a.letterNotIncluded('s');
         a.letterNotIncluded('i');
-        a.letterNotIncluded('h');
 
-        ArrayList<potentialAnswer> result = a.sameWords(".atch");
+        ArrayList<potentialAnswer> result = a.sameWords(".....");
         System.out.println(Arrays.toString(result.toArray()));
+        System.out.println(result.size());
 
     }
 }
