@@ -9,6 +9,7 @@ public class databaseTest {
     public void testInitialize() throws FileNotFoundException {
         database a  = new database();
         String[] wordbank = a.wordleList();
+        assertEquals(wordbank[1319], "nylon");
         assertEquals(wordbank[0], "aback");
         assertEquals(wordbank[wordbank.length - 1], "zonal");
     }
