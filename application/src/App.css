@@ -9,9 +9,16 @@
 .Keyboard{
   padding: 10px;
 }
-.key{
+.Key{
   width: 100px;
   height : 100px;
   font-size: 20px;
   padding: 10px;
+}
+.InputLetter{
+  width: 200px;
+  font-size: 20px;
+}
+.GuessSection{
+  padding: 20px;
 }

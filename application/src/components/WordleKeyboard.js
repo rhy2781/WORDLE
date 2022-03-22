@@ -6,37 +6,37 @@ class WordleKeyboard extends React.Component {
         return (
             <div className="Keyboard">
                 <div>
-                    <Button className="key">q</Button>
-                    <Button className="key">w</Button>
-                    <Button className="key">e</Button>
-                    <Button className="key">r</Button>
-                    <Button className="key">t</Button>
-                    <Button className="key">y</Button>
-                    <Button className="key">u</Button>
-                    <Button className="key">i</Button>
-                    <Button className="key">o</Button>
-                    <Button className="key">p</Button>
+                    <Button className="Key">q</Button>
+                    <Button className="Key">w</Button>
+                    <Button className="Key">e</Button>
+                    <Button className="Key">r</Button>
+                    <Button className="Key">t</Button>
+                    <Button className="Key">y</Button>
+                    <Button className="Key">u</Button>
+                    <Button className="Key">i</Button>
+                    <Button className="Key">o</Button>
+                    <Button className="Key">p</Button>
                 </div>
 
                 <div>
-                    <Button className="key">a</Button>
-                    <Button className="key">s</Button>
-                    <Button className="key">d</Button>
-                    <Button className="key">f</Button>
-                    <Button className="key">g</Button>
-                    <Button className="key">h</Button>
-                    <Button className="key">j</Button>
-                    <Button className="key">k</Button>
-                    <Button className="key">l</Button>
+                    <Button className="Key">a</Button>
+                    <Button className="Key">s</Button>
+                    <Button className="Key">d</Button>
+                    <Button className="Key">f</Button>
+                    <Button className="Key">g</Button>
+                    <Button className="Key">h</Button>
+                    <Button className="Key">j</Button>
+                    <Button className="Key">k</Button>
+                    <Button className="Key">l</Button>
                 </div>
                 <div>
-                    <Button className="key">z</Button>
-                    <Button className="key">x</Button>
-                    <Button className="key">c</Button>
-                    <Button className="key">v</Button>
-                    <Button className="key">b</Button>
-                    <Button className="key">n</Button>
-                    <Button className="key">m</Button>
+                    <Button className="Key">z</Button>
+                    <Button className="Key">x</Button>
+                    <Button className="Key">c</Button>
+                    <Button className="Key">v</Button>
+                    <Button className="Key">b</Button>
+                    <Button className="Key">n</Button>
+                    <Button className="Key">m</Button>
                 </div>
             </div>
         )
